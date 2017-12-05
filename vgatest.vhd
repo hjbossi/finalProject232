@@ -40,29 +40,51 @@ begin
   begin
     -- wait until clock = '1';
     
-    if  y > 350 and Y < 450 and X > 275 and X < 375  then
+    if  Y < 480-20 and Y > 480-90 and X < 640-285 and X > 640-365  then
       red <= '1';
-    elsif  Y > 200 and Y < 300 and X > 425 and X < 525  then
+	 elsif  Y < 480-85 and Y > 480-105 and X < 640-317 and X > 640-333  then
 	   red <= '1';
-    else
-      red <= '0';
-    end if;
-    
-    if  Y > 50 and Y < 150 and X > 275 and X < 375  then
+    elsif  Y < 480-104 and Y > 480-150 and X < 640-305 and X > 640-345  then
+	   red <= '1';
+    elsif  Y < 480-210 and Y > 480-290 and X < 640-125 and X > 640-175  then
+      red <= '1';
+		blue <= '1';
+    elsif  Y < 480-240 and Y > 480-260 and X < 640-174 and X > 640-200  then
+      red <= '1';
+		blue <= '1';
+    elsif  Y < 480-220 and Y > 480-280 and X < 640-199 and X > 640-240  then
+      red <= '1';
+		blue <= '1';
+    elsif  Y > 20 and Y < 90 and X > 285 and X < 365  then
       green <= '1';
-	 
-    else
-      green <= '0';
-    end if;
-    
-    if  Y > 200 and Y < 300 and X > 125 and X < 225  then
+	 elsif  Y > 85 and Y < 105 and X > 317 and X < 333  then
+	   green <= '1';
+    elsif  Y > 104 and Y < 150 and X > 305 and X < 345  then
+	   green <= '1';    
+    elsif  Y > 210 and Y < 290 and X > 125 and X < 175  then
       blue <= '1';
-	 elsif  Y > 200 and Y < 300 and X > 425 and X < 525  then
-      blue <= '1';
+    elsif  Y > 240 and Y < 260 and X > 174 and X < 200  then
+	   blue <= '1';
+    elsif  Y > 220 and Y < 280 and X > 199 and X < 240  then
+	   blue <= '1';
+    elsif  Y > 235 and Y < 245 and X > 315 and X < 325  then
+		blue <= '1';
+		green <= '1'; 
+		red <= '1';
+    elsif Y > 237 and Y < 242 and X > 312 and X < 327  then
+		blue <= '1';
+		green <= '1'; 
+		red <= '1';
+    elsif  Y > 232 and Y < 247 and X > 317 and X < 322  then
+		blue <= '1';
+		green <= '1'; 
+		red <= '1';
     else
       blue <= '0';
+		green <= '0';
+		red <= '0';
     end if;
-
+	 
   end process;
 
 end architecture;
