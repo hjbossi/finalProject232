@@ -4,6 +4,8 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.math_real.all;
 
 entity game is
 
@@ -58,25 +60,27 @@ begin
 					if counter <= "000" then
 						state <= sPlay;
 					else
-						counter <= counter - 1;
+						counter <= unsigned(counter) - 1;
 					end if;
 				when sPlay=>
 					if player1 = '1' and rand(3) = '1' then
 						ra <= ra + 1;
+						re <= re - 1;
 					elsif player2 = '1' and rand(2) = '1' then
 						rb <= rb + 1;
+						re <= re - 1;
 					elsif player3 = '1' and rand(1) = '1' then
 						rc <= rc + 1;
+						re <= re - 1;
 					elsif player4 = '1' and rand(0) = '1' then
 						rd <= rd + 1;
+						re <= re - 1;
 					elsif re <= "0000" then
 						state <= sEnd;
 					end if;
 				when sEnd =>
-					if input = '1' then
-						state <= s0;
-					else
-						state <= s3;
+					if b1 = '1' then
+						state <= sWait;
 					end if;
 			end case;
 		end if;
