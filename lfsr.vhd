@@ -29,7 +29,7 @@ begin
 	
 	process(clk, reset)
 	begin
-		if reset = '0' then
+		if reset = '1' then
 			counter <= "0000000000000000000000000000";
 		elsif (rising_edge(clk)) then
 			counter <= counter + 1;
