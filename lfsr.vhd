@@ -1,6 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use ieee.std_logic_arith.ALL;
+use ieee.numeric_std.ALL;
 
 entity lfsr is
 	Port (	clk : in STD_LOGIC;
