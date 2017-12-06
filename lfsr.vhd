@@ -20,8 +20,7 @@ begin
 	
 	process (clk,reset) -- change to slowclock if you want to make it slower
 	begin
-		if (reset='0') then -- changed this to 0 for the sake of the buttons
-		-- can change it back to 1 if needed by our program
+		if (reset='1') then 
 			out_reg <= "0000";
 		elsif (rising_edge(clk)) then -- change to slowclock if you want to make it slower
 			out_reg <= out_reg(2 downto 0) & feedback;
