@@ -27,6 +27,7 @@ begin
 		end if;
 	end process;
 	
+	--slowclock&counter used for testing/debugging
 	process(clk, reset)
 	begin
 		if reset = '1' then
