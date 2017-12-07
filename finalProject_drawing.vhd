@@ -79,10 +79,10 @@ architecture rtl of finalProject_drawing is
 				keyboard_clock : in std_logic; -- clock for the keyboard
 				keyboard_data  : in std_logic; -- data signal from the keyboard
 				isUp    :out std_logic; --  is up arrow pressed
-				isW     :out std_logic; -- is W pressed
+				isLShift     :out std_logic; -- is W pressed
 				isSpace :out std_logic; --- is space pressed
 				isEnter :out std_logic; -- is Enter pressed
-				isP     : out std_logic; -- is P pressed 
+				isRShift     : out std_logic; -- is P pressed 
 				isESC     :out std_logic  -- is ESC pressed
 			);
 	end component; 
@@ -160,12 +160,12 @@ begin
 			clock => clock,
 			keyboard_clock => keyboard_clock,
 			isUp => player1,
-			isW => player2,
+			isLShift => player4,
 			isEnter => start,
 			isESC => reset,
 			keyboard_data => keyboard_data,
 			isSpace => player3,
-			isP => player4
+			isRShift => player2
 		);
 	
 	
@@ -205,7 +205,7 @@ begin
 		
 		if reset = '1' then
 			state <= sIdle;
-			counter <= "0000000000000000000000001111"; --can reduce number of bits in counter
+			counter <= "0000000000000000000000111111"; --can reduce number of bits in counter
 			ra <= "0000";
 			rb <= "0000";
 			rc <= "0000";
