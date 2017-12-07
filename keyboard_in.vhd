@@ -13,8 +13,10 @@ entity keyboard_in is
 	keyboard_clock : in std_logic; -- clock for the keyboard
 	keyboard_data  : in std_logic; -- data signal from the keyboard
 	isUp    :out std_logic; --  is up arrow pressed
-	isW     :out std_logic; -- is W pressed
+	isLShift     :out std_logic; -- is W pressed
+	isSpace :out std_logic; --- is space pressed
 	isEnter :out std_logic; -- is Enter pressed
+	isRShift     : out std_logic; -- is P pressed 
 	isESC     :out std_logic  -- is ESC pressed
 	); 
 end entity; 
@@ -47,10 +49,10 @@ begin
 		begin
 			if (rising_edge(clock)) then 
 				-- check if w is pressed
-				if key_pressed = "00011101" and key_new = '0' then 
-					isW <= '1'; 
+				if key_pressed = "00010010" and key_new = '0' then 
+					isLShift <= '1'; 
 				else
-					isW <= '0'; 
+					isLShift <= '0'; 
 				end if; 
 				
 				-- check if up arrow is pressed
@@ -61,7 +63,7 @@ begin
 				end if; 
 				
 				-- check if enter is pressed
-				if key_pressed = "01011010" and key_new = '0' then 
+				if key_pressed = "01011010"  then 
 					isEnter <= '1'; 
 				else
 					isEnter <= '0'; 
@@ -73,6 +75,21 @@ begin
 				else
 					isESC <= '0'; 
 				end if; 
+				
+				-- check if space is pressed
+				if key_pressed = "00101001" and key_new = '0' then 
+					isSpace <= '1'; 
+				else
+					isSpace <= '0'; 
+				end if; 
+				
+				-- check if P is pressed
+				if key_pressed = "01011001" and key_new = '0' then 
+					isRShift <= '1'; 
+				else
+					isRShift <= '0'; 
+				end if; 
+				
 				
 			end if; 
 	end process; 
