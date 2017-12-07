@@ -291,23 +291,570 @@ begin
 	   blue <= '1';
     elsif  Y > 220 and Y < 280 and X > 199 and X < 240  then
 	   blue <= '1';
---    elsif  Y > 235 and Y < 245 and X > 315 and X < 325  then
---		blue <= '1';
---		green <= '1'; 
---		red <= '1';
---    elsif Y > 237 and Y < 242 and X > 312 and X < 327  then--i/o from component=>internal signal
---		blue <= '1';
---		green <= '1'; 
---		red <= '1';
---    elsif  Y > 232 and Y < 247 and X > 317 and X < 322  then
---		blue <= '1';
---		green <= '1'; 
---		red <= '1';
     else
       blue <= '0';
 		green <= '0';
 		red <= '0';
     end if;
+    if re = "1111" then
+						if  Y > 150 and Y < 160 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 150 and Y < 160 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 150 and Y < 160 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 150 and Y < 160 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 150 and Y < 160 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "1110" then
+						if  Y > 150 and Y < 160 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 150 and Y < 160 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 150 and Y < 160 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 150 and Y < 160 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "1101" then
+						if  Y > 150 and Y < 160 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 150 and Y < 160 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 150 and Y < 160 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "1100" then
+						if  Y > 150 and Y < 160 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 150 and Y < 160 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "1011" then
+						if  Y > 150 and Y < 160 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "1010" then
+						if  Y > 170 and Y < 180 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "1001" then
+						if  Y > 170 and Y < 180 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "1000" then
+						if  Y > 170 and Y < 180 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "0111" then
+						if  Y > 170 and Y < 180 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 170 and Y < 180 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "0110" then
+						if  Y > 170 and Y < 180 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "0101" then
+						if  Y > 190 and Y < 200 and X > 325 and X < 335  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "0100" then
+						if  Y > 190 and Y < 200 and X > 340 and X < 350  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 355 and X < 365  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "0011" then
+						if  Y > 190 and Y < 200 and X > 370 and X < 380  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						elsif  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					elsif re = "0010" then
+						if  Y > 190 and Y < 200 and X > 385 and X < 395  then
+							blue <= '1';
+							green <= '1'; 
+							red <= '1';
+						else
+							blue <= '0';
+							green <= '0';
+							red <= '0';
+						end if;
+					else
+						if Y > 150 and Y < 375 and X > 325 and X < 395 then
+							red <= '1';
+						else
+							red <= '0';
+						end if;
+					end if;
 	 
   end process;
   
