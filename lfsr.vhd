@@ -4,7 +4,7 @@ use ieee.numeric_std.ALL;
 
 entity lfsr is
 	Port (	clk : in STD_LOGIC;
-				reset : in STD_LOGIC;
+				rst : in STD_LOGIC;
 				outp : out STD_LOGIC_VECTOR (3 downto 0));
 end lfsr;
 
@@ -18,26 +18,26 @@ architecture Behavioral of lfsr is
 begin
 	feedback <= not (out_reg(3) xor out_reg(2));
 	
-	process (clk,reset) -- change to slowclock if you want to make it slower
+	process (slowclock,rst) -- change to slowclock if you want to make it slower
 	begin
-		if (reset='1') then 
+		if (rst='1') then 
 			out_reg <= "0000";
-		elsif (rising_edge(clk)) then -- change to slowclock if you want to make it slower
+		elsif (rising_edge(slowclock)) then -- change to slowclock if you want to make it slower
 			out_reg <= out_reg(2 downto 0) & feedback;
 		end if;
 	end process;
 	
 	--slowclock&counter used for testing/debugging
-	process(clk, reset)
+	process(clk, rst)
 	begin
-		if reset = '1' then
+		if rst = '1' then
 			counter <= "0000000000000000000000000000";
 		elsif (rising_edge(clk)) then
 			counter <= counter + 1;
 		end if;
 	end process;
 	
-	slowclock <= counter(23);
+	slowclock <= counter(19);
 	
 	outp <= out_reg;
 	
