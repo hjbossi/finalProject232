@@ -5,6 +5,9 @@
 -- The output is written only when the state changes.  (State
 -- transitions are synchronous.)
 
+-- CS232 Final Project 
+-- Max Abramson, Hannah Bossi, John Dowling, Matt Jones
+
 library ieee;
 use ieee.std_logic_1164.all;
 --use ieee.std_logic_arith.all;
@@ -13,63 +16,88 @@ use ieee.numeric_std.all;
 
 entity finalProject_drawing is
 	port(
-		clock         : in std_logic;
-
+		clock         : in std_logic;	
+		rand_clock		: in std_logic; -- clock for random number
+		
 		-- Keyboard Component
 		keyboard_clock : in std_logic; -- clock for the keyboard
 		keyboard_data  : in std_logic; -- data signal from the keyboard
 		
 		-- VGA Driver
-		R, G, B, H, V : out std_logic;
+		R, G, B, H, V : out std_logic; -- output for the players colors
+		
+		-- output to hold the players scores
 		score1 : out std_logic_vector(6 downto 0);
 		score2 : out std_logic_vector(6 downto 0);
 		score3 : out std_logic_vector(6 downto 0);
 		score4 : out std_logic_vector(6 downto 0);
 		
-		
-		debug : out std_logic_vector(3 downto 0)
+		-- debug signals
+		debug : out std_logic_vector(3 downto 0);
+		rand_view : out std_logic_vector(3 downto 0)
 	);
 end entity;
 
 
+-- ============================ ARCHITECTURE ==============================================
 architecture rtl of finalProject_drawing is
+	
+	-- ======================== COMPONENTS =================================================
+	
+	-- VGA Driver 
 	component vgadrive is
-		 port( clock          : in std_logic;  -- 25.175 Mhz clock
-			  red, green, blue : in std_logic;  -- input values for RGB signals
-			  row, column      : out std_logic_vector(9 downto 0); -- for current pixel
-			  Rout, Gout, Bout, H, V : out std_logic -- VGA drive signals
+		port(
+			clock          : in std_logic;  -- 25.175 Mhz clock
+			red, green, blue : in std_logic;  -- input values for RGB signals
+			row, column      : out std_logic_vector(9 downto 0); -- for current pixel
+			Rout, Gout, Bout, H, V : out std_logic -- VGA drive signals
 		); 
-  end component;
+   end component;
   
+  
+	-- Seven Segment Display
   	component display
-		PORT
-	(
-		A :  IN  STD_LOGIC;
-		B :  IN  STD_LOGIC;
-		C :  IN  STD_LOGIC;
-		D :  IN  STD_LOGIC;
-		LU :  OUT  STD_LOGIC;
-		RU :  OUT  STD_LOGIC;
-		RL :  OUT  STD_LOGIC;
-		MU :  OUT  STD_LOGIC;
-		MM :  OUT  STD_LOGIC;
-		ML :  OUT  STD_LOGIC;
-		LL :  OUT  STD_LOGIC
-	);
+		PORT (
+			A :  IN  STD_LOGIC;
+			B :  IN  STD_LOGIC;
+			C :  IN  STD_LOGIC;
+			D :  IN  STD_LOGIC;
+			LU :  OUT  STD_LOGIC;
+			RU :  OUT  STD_LOGIC;
+			RL :  OUT  STD_LOGIC;
+			MU :  OUT  STD_LOGIC;
+			MM :  OUT  STD_LOGIC;
+			ML :  OUT  STD_LOGIC;
+			LL :  OUT  STD_LOGIC
+		);
 	end component;
   
+	-- Keyboard Driver
 	component keyboard_in is 
-	
-		port(
-			clock   :in std_logic; 
-			keyboard_clock : in std_logic; -- clock for the keyboard
-			keyboard_data  : in std_logic; -- data signal from the keyboard
-			isUp    : out std_logic; --  is up arrow pressed
-			isW     : out std_logic; -- is W pressed
-			isEnter : out std_logic; -- is Enter pressed
-			isESC     :out std_logic  -- is ESC pressed
-		 ); 
+			port(
+				clock   :in std_logic; 
+				keyboard_clock : in std_logic; -- clock for the keyboard
+				keyboard_data  : in std_logic; -- data signal from the keyboard
+				isUp    :out std_logic; --  is up arrow pressed
+				isW     :out std_logic; -- is W pressed
+				isSpace :out std_logic; --- is space pressed
+				isEnter :out std_logic; -- is Enter pressed
+				isP     : out std_logic; -- is P pressed 
+				isESC     :out std_logic  -- is ESC pressed
+			);
 	end component; 
+	
+	--linear feedback shift register used for generating pseudo-random 4 bit numbers
+	component lfsr is
+		port(
+			clk : in STD_LOGIC;
+			rst : in STD_LOGIC;
+			outp : out STD_LOGIC_VECTOR (3 downto 0)
+		);
+	end component;
+	
+	
+	--====================================== INTERNAL SIGNALS =============================================
 	
 		-- Build an enumerated type for the state machine
 	type state_type is (sIdle, sWait, sPlay, sEnd);
@@ -90,15 +118,27 @@ architecture rtl of finalProject_drawing is
 	signal re		: unsigned(3 downto 0);
 	signal player1	: std_logic;
 	signal player2	: std_logic;
-	signal player3	: std_logic;
-	signal player4	: std_logic;
+	signal player3 : std_logic; 
+	signal player4 : std_logic; 
 	signal start 	: std_logic;
 	signal reset	: std_logic;
 	
 	-- Random signal
 	signal rand : std_logic_vector(3 downto 0);
+	signal rand_test : std_logic_vector(3 downto 0);
 	
-	begin
+	-- slow clock signals to make the speed of the game manageable
+	signal slowclock : std_logic;
+	signal slclcounter : unsigned(27 downto 0);
+	
+	
+-- ================================================= PROCESSES ===================================================	
+begin
+	
+	--component instances
+	--i/o from component=>internal signal
+	
+	-- VGA component
 	VGA : vgadrive 
 		port map(
 			clock => clock,
@@ -114,6 +154,7 @@ architecture rtl of finalProject_drawing is
 			V => V
 		);
   	
+	-- Keyboard driver component
 	keyboard1 : keyboard_in
 		port map(
 			clock => clock,
@@ -122,9 +163,13 @@ architecture rtl of finalProject_drawing is
 			isW => player2,
 			isEnter => start,
 			isESC => reset,
-			keyboard_data => keyboard_data
+			keyboard_data => keyboard_data,
+			isSpace => player3,
+			isP => player4
 		);
 	
+	
+	-- 7 Segment Display Components
 	count1 : display
 		port map (A => ra(3) , B => ra(2) , C => ra(1), D => ra(0), MU => score1(0), RU => score1(1), RL => score1(2), ML => score1(3), LL => score1(4), LU => score1(5), MM => score1(6));
 		
@@ -137,25 +182,45 @@ architecture rtl of finalProject_drawing is
 	count4 : display
 		port map (A => rd(3) , B => rd(2) , C => rd(1), D => rd(0), MU => score4(0), RU => score4(1), RL => score4(2), ML => score4(3), LL => score4(4), LU => score4(5), MM => score4(6));
 	
-	-- Logic to advance to the next state
-	process (clock, reset)
+	-- LSFR components
+	lfsr1: lfsr
+		port map(clk => rand_clock, rst=>reset, outp => rand);
+	
+	
+	-- ========================================= slowclock process ===================================================
+	process(clock, reset)
 	begin
-		rand <= " 000"; -- Test
+		if reset = '1' then
+			slclcounter <= "0000000000000000000000000000";
+		elsif(rising_edge(clock)) then
+			slclcounter <= slclcounter + 1;
+		end if;
+	end process;
+	
+	slowclock <= slclcounter(19);
+	
+	-- ===========================================  STATE MACHINE ====================================================
+	process (slowclock, reset)
+	begin
+		
 		if reset = '1' then
 			state <= sIdle;
-			counter <= "1111111111111111111111111111";
+			counter <= "0000000000000000000000001111"; --can reduce number of bits in counter
 			ra <= "0000";
 			rb <= "0000";
 			rc <= "0000";
 			rd <= "0000";
 			re <= "1111";
-		elsif (rising_edge(clock)) then
+		elsif (rising_edge(slowclock)) then
 			case state is
+				-- Idle State
 				when sIdle=>
 					debug <= "0001"; 
 					if start = '1' then
 						state <= sWait;
 					end if;
+					
+				-- Wait State	
 				when sWait=>
 					debug <= "0010"; 
 					if counter <= "0000000000000000000000000000" then
@@ -163,15 +228,18 @@ architecture rtl of finalProject_drawing is
 					else
 						counter <= std_logic_vector(unsigned(counter) - 1);
 					end if;
+					
+				-- Play State	
 				when sPlay=>
 					debug <= "0100"; 
+					
 					if player1 = '1' and rand(3) = '1' then
 						ra <= ra + 1;
 						re <= re - 1;
-					elsif player2 = '1' and rand(2) = '1' then
+					elsif player2 = '1' and rand(2) = '1' then 
 						rb <= rb + 1;
 						re <= re - 1;
-					elsif player3 = '1' and rand(1) = '1' then
+					elsif player3 = '1' and rand(1) = '1' then 
 						rc <= rc + 1;
 						re <= re - 1;
 					elsif player4 = '1' and rand(0) = '1' then
@@ -179,7 +247,9 @@ architecture rtl of finalProject_drawing is
 						re <= re - 1;
 					elsif re <= "0000" then
 						state <= sEnd;
-					end if;
+					end if;--i/o from component=>internal signal
+					
+				-- End State	
 				when sEnd =>
 					debug <= "1000";
 					if reset = '1' then
@@ -189,6 +259,7 @@ architecture rtl of finalProject_drawing is
 		end if;
 	end process;
 	
+	-- =========================================== PROCESSS TO DRAW THE HIPPOS =======================================
 	RGB : process(Y, X)
   begin
     -- wait until clock = '1';
@@ -224,7 +295,7 @@ architecture rtl of finalProject_drawing is
 --		blue <= '1';
 --		green <= '1'; 
 --		red <= '1';
---    elsif Y > 237 and Y < 242 and X > 312 and X < 327  then
+--    elsif Y > 237 and Y < 242 and X > 312 and X < 327  then--i/o from component=>internal signal
 --		blue <= '1';
 --		green <= '1'; 
 --		red <= '1';
@@ -239,4 +310,11 @@ architecture rtl of finalProject_drawing is
     end if;
 	 
   end process;
+  
+  
+  -- set the output signal
+  rand_view <= rand;
+  
+  
+  
 end rtl;
