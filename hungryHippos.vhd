@@ -16,6 +16,8 @@ entity hungryHippos is
 		keyboard_clock : in std_logic; -- clock for the keyboard
 		keyboard_data  : in std_logic; -- data signal from the keyboard
 		
+		re_init : in unsigned(3 downto 0); --total balls spawned at beginning of game
+		
 		-- VGA Driver
 		R, G, B, H, V : out std_logic; -- output for the players colors
 		
@@ -262,7 +264,7 @@ begin
 				when sWait=>
 					debug <= "0010"; 
 					if counter <= "0000000000000000000000000000" then
-						re <= "1111";
+						re <= re_init;
 						state <= sPlay;
 					else
 						counter <= std_logic_vector(unsigned(counter) - 1);
@@ -304,10 +306,7 @@ begin
    --Drawing the four hippos
     
    if re = "1111" then
-		if player1 = '1' then
-			if Y > 165 and Y < 195 and X > 255 and X < 270  then
-			end if;
-		end if;
+
 			if  Y > 165 and Y < 195 and X > 255 and X < 270  then
 				blue <= '1';
 				green <= '1'; 
@@ -403,6 +402,7 @@ begin
 				end if;
 			end if;
 	elsif re = "1110" then
+
 		if  Y > 165 and Y < 195 and X > 285 and X < 300  then
 			blue <= '1';
 			green <= '1'; 
@@ -494,6 +494,7 @@ begin
 			end if;
 		end if;
 	elsif re = "1101" then
+
 		if  Y > 165 and Y < 195 and X > 315 and X < 330  then
 			blue <= '1';
 			green <= '1'; 
@@ -581,6 +582,7 @@ begin
 			end if;
 		end if;
 	elsif re = "1100" then
+
 		if  Y > 165 and Y < 195 and X > 345 and X < 360  then
 			blue <= '1';
 			green <= '1'; 
@@ -664,6 +666,7 @@ begin
 			end if;
 		end if;
 	elsif re = "1011" then
+
 		if  Y > 165 and Y < 195 and X > 375 and X < 390  then
 			blue <= '1';
 			green <= '1'; 
@@ -743,6 +746,7 @@ begin
 			end if;
 		end if;
 	elsif re = "1010" then
+
 		if  Y > 225 and Y < 255 and X > 255 and X < 270  then
 			blue <= '1';
 			green <= '1'; 
@@ -818,6 +822,7 @@ begin
 			end if;
 		end if;
 	elsif re = "1001" then
+
 		if  Y > 225 and Y < 255 and X > 285 and X < 300  then
 			blue <= '1';
 			green <= '1'; 
@@ -889,6 +894,7 @@ begin
 			end if;
 		end if;
 	elsif re = "1000" then
+
 		if  Y > 225 and Y < 255 and X > 315 and X < 330  then
 			blue <= '1';
 			green <= '1'; 
@@ -956,6 +962,7 @@ begin
 			end if;
 		end if;
 	elsif re = "0111" then
+
 		if  Y > 225 and Y < 255 and X > 345 and X < 360  then
 			blue <= '1';
 			green <= '1'; 
@@ -1019,6 +1026,7 @@ begin
 			end if;
 		end if;
 	elsif re = "0110" then
+
 		if  Y > 225 and Y < 255 and X > 375 and X < 390  then
 			blue <= '1';
 			green <= '1'; 
@@ -1078,6 +1086,7 @@ begin
 			end if;
 		end if;
 	elsif re = "0101" then
+
 		if  Y > 285 and Y < 315 and X > 255 and X < 270  then
 			blue <= '1';
 			green <= '1'; 
@@ -1133,6 +1142,7 @@ begin
 			end if;
 		end if;
 	elsif re = "0100" then
+
 		if  Y > 285 and Y < 315 and X > 285 and X < 300  then
 			blue <= '1';
 			green <= '1'; 
@@ -1184,6 +1194,7 @@ begin
 			end if;
 		end if;
 	elsif re = "0011" then
+
 		if  Y > 285 and Y < 315 and X > 315 and X < 330  then
 			blue <= '1';
 			green <= '1'; 
@@ -1231,6 +1242,7 @@ begin
 			end if;
 		end if;	
 	elsif re = "0010" then
+
 		if  Y > 285 and Y < 315 and X > 345 and X < 360  then
 			blue <= '1';
 			green <= '1'; 
@@ -1274,6 +1286,7 @@ begin
 			end if;
 		end if;
 	elsif  re = "0001" then
+
 		if  Y > 285 and Y < 315 and X > 375 and X < 390  then
 			blue <= '1';
 			green <= '1'; 
@@ -1330,10 +1343,14 @@ begin
 				red <= '1';
 				blue <= '1';
 				green <= '0';
-			elsif state = sWait or state = sIdle then
+			elsif state = sWait then
 				red <= '1';
 				green <= '1';
 				blue <= '1';
+			elsif state = sIdle then
+				green <= '1';
+				blue <= '1';
+				red <= '0';
 			else
 				red <= '1';
 				green <= '1';

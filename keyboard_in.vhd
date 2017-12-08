@@ -21,7 +21,6 @@ entity keyboard_in is
 	); 
 end entity; 
 
-
 architecture test of keyboard_in is
 	-- add the component for the keyboard
    component ps2_keyboard is 
@@ -38,9 +37,7 @@ architecture test of keyboard_in is
 	signal key_pressed  : std_logic_vector(7 downto 0); 
 	signal key_new : std_logic;
 
-
 begin
-	
 	-- create component to be used in process
 	keyboard1 : ps2_keyboard
 		port map(clk => clock, ps2_clk => keyboard_clock, ps2_data => keyboard_data, ps2_code_new => key_new, ps2_code => key_pressed);
@@ -88,9 +85,8 @@ begin
 					isRShift <= '1'; 
 				else
 					isRShift <= '0'; 
-				end if; 
-				
-				
+				end if; 	
 			end if; 
+			
 	end process; 
 end architecture;
